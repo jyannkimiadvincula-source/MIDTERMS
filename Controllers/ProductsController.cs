@@ -12,18 +12,98 @@ namespace MIDTERMS.Controllers
             _db = db;
         }
 
-public IActionResult Index(string searchString)
-{
-    var products = _db.Products.AsQueryable();
+        // =========================
+        // PRODUCTS
+        // =========================
+        public IActionResult Index()
+        {
+            var products = _db.Products.ToList();
 
-    if (!string.IsNullOrEmpty(searchString))
-    {
-        products = products.Where(p => p.Name.Contains(searchString));
-    }
+            return View(products);
+        }
 
-    ViewData["searchString"] = searchString;
+        // =========================
+        // CREATE PRODUCT - GET
+        // =========================
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-    return View(products.ToList());
-}
+        // =========================
+        // CREATE PRODUCT - POST
+        // =========================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Products.Add(product);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
+        // =========================
+        // EDIT PRODUCT - GET
+        // =========================
+        public IActionResult Edit(int id)
+        {
+            var product = _db.Products.Find(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        // =========================
+        // EDIT PRODUCT - POST
+        // =========================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Product product)
+        {
+            if (id != product.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _db.Products.Update(product);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
+        // =========================
+        // DELETE PRODUCT
+        // =========================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            var product = _db.Products.Find(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _db.Products.Remove(product);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

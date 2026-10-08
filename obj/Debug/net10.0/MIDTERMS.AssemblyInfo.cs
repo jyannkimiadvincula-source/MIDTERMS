@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MIDTERMS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+942db4164ef426f0a1c6f77d0803151fec186d21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b86b1c21e04d709a8baeb87c45dc72d6e685914")]
 [assembly: System.Reflection.AssemblyProductAttribute("MIDTERMS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MIDTERMS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,35 @@
+@model MIDTERMS.Models.Product
+
+<h1>Add Product</h1>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Product Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Price</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Amount" class="form-label">Amount</label>
+        <input asp-for="Amount"
+               class="form-control"
+               type="number"
+               min="0" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Add Product
+    </button>
+
+    <a asp-controller="Products"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
