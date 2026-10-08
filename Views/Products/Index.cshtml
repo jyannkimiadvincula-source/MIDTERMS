@@ -1,0 +1,28 @@
+@model IEnumerable<MIDTERMS.Models.Product>
+
+<h1>Products</h1>
+
+<form asp-action="Index" method="get" class="mb-3">
+    <input type="text" name="searchString" value="@ViewData["searchString"]"
+           placeholder="Search product name..." />
+    <button type="submit">Search</button>
+    <a asp-action="Index">Clear</a>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
